@@ -1,1 +1,38 @@
+openapi: 3.0.3
+info:
+  title: Tiny API Demo
+  version: 1.0.0
+  description: This is a tiny little API demo
 
+servers:
+  - url: http://localhost:5000
+
+paths:
+  /hello:
+    get:
+      summary: Get a greeting
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  text:
+                    type: string
+                    example: Hello World
+  /wassup:
+    get:
+      summary: Get another greeting
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  text:
+                    type: string
+                    example: Wassup
