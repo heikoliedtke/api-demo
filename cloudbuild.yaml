@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker:latest'
+    args: ['build', '-t', 'europe-west3-docker.pkg.dev/$_PROJECT_ID/docker-repository/${_TARGET_IMAGE_URI}', '.']
+    dir: 'examples/api'
+
+images: ['europe-west3-docker.pkg.dev/$_PROJECT_ID/docker-repository/${_TARGET_IMAGE_URI}']
+timeout: 3600s
+options:
+   logging: CLOUD_LOGGING_ONLY
