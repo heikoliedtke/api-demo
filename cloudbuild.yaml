@@ -1,9 +1,9 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker:latest'
-    args: ['build', '-t', 'europe-west1-docker.pkg.dev/$_PROJECT_ID/docker-repository/${_TARGET_IMAGE_URI}', '.']
+    args: ['build', '-t', 'europe-west1-docker.pkg.dev/wil2023-408410/altrhoiapi01/demo01:latest', '.']
     dir: 'examples/api'
-
-images: ['europe-west1-docker.pkg.dev/$_PROJECT_ID/docker-repository/${_TARGET_IMAGE_URI}']
+  - name: 'gcr.io/cloud-builders/docker:latest'
+    args: ['push', 'europe-west1-docker.pkg.dev/wil2023-408410/altrhoiapi01/demo01:latest']
 timeout: 3600s
 options:
    logging: CLOUD_LOGGING_ONLY
