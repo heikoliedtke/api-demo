@@ -3,23 +3,33 @@ from flask_cors import CORS
 import os
 import firebase_admin
 from firebase_admin import credentials, firestore
+from google.cloud import firestore
+
+
 
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-cred = credentials.Certificate("firestore_key.json")
-firebase_admin.initialize_app(cred)
-db = firestore.client()
+PROJECT_ID= "wil2023-408410"
+COLLECTION_NAME= "swag"
+
+
+key_path = './firestore_key.json'
+
+if os.path.exists(key_path):
+    db = firestore.Client.from_service_account_json(key_path)
+    # ... proceed with Firestore operations ...
+else:
+    print(f"Error: The file '{key_path}' does not exist.")
+    # ... handle the error appropriately (e.g., exit, raise an exception) ...
+
 
 @app.route('/swag')
 def swag():
     """
-    Returns a JSON response with the text "swag"
+    Returns a JSON response with"
     """
-    
-    COLLECTION_NAME = "swag"
-    PROJECT_ID = "wil2023-408410"
     try:
         docs = db.collection(COLLECTION_NAME).stream()
         swag_list = []
